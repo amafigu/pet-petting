@@ -1,13 +1,11 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import { AppDataSource } from './config/data-source'
-
+import router from './routes'
 dotenv.config()
 const app = express()
-
-app.get('/', (req, res) => {
-  res.send('running')
-})
+app.use(express.json())
+router(app)
 
 AppDataSource.initialize()
   .then(() => {
