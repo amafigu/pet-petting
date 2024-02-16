@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
-import type Species from '../enum/Species'
+import Species from '../enum/Species'
 
 @Entity()
 export class Pet {
