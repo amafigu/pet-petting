@@ -6,7 +6,9 @@
   "extends": [
     "standard-with-typescript",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "prettier"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -23,6 +25,12 @@
       }
     ],
     "@typescript-eslint/quotes": ["error", "single", { "avoidEscape": true }],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ],
     "comma-dangle": ["error", "never"]
   }
 }
