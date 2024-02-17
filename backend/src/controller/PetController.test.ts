@@ -1,45 +1,34 @@
 import { type Request, type Response } from 'express'
 import { PetController } from '../controller/PetController'
-import { type Pet } from '../entity/Pet'
+import { expectedPets } from '../utils/pets'
 
-const { PetRepository } = jest.requireActual('../repositories/PetRepository')
-
-jest.mock('../repositories/PetRepository', () => {
-  return {
-    PetRepository: jest.fn().mockImplementation(() => ({
-      getAll: jest.fn().mockResolvedValue([
-        {
-          id: 1,
-          name: 'Test Pet',
-          species: 'DOG',
-          birthday: new Date(),
-          avatarUrl: 'jpg',
-          breed: 'breedy',
-          description: 'nice guy',
-          isSick: false
-        }
-      ] as Pet[])
-    }))
+jest.mock('../repositories/PetRepository', () => ({
+  __esModule: true,
+  PetRepository: {
+    getAll: jest.fn().mockResolvedValue(expectedPets)
   }
-})
+}))
 
 describe('PetController should', () => {
   let mockResponse: Partial<Response>
 
   beforeEach(() => {
-    mockResponse = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn()
-    }
+    mockResponse = { status: jest.fn().mockReturnThis(), json: jest.fn() }
   })
 
   test('should return all pets', async () => {
-    const mockedRepo = new PetRepository()
-    const controller = new PetController(mockedRepo)
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { PetRepository } = require('../repositories/PetRepository')
+    PetRepository.getAll.mockResolvedValue(expectedPets)
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    const controller = new PetController(PetRepository)
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const req = {} as Request
     const res = mockResponse as Response
 
     await controller.getAll(req, res)
-    expect(res.status).toHaveBeenCalledWith(expect.anything())
+
+    expect(res.json).toHaveBeenCalledWith(expectedPets)
   })
 })
