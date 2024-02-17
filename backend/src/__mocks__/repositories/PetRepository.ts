@@ -18,12 +18,4 @@ export class PetRepository {
       }
     ]
   }
-
-  async findById(id: number): Promise<Pet | null> {
-    return null
-  }
-
-  async update(id: number, pet: Partial<Pet>): Promise<void> {}
-
-  async delete(id: number): Promise<void> {}
 }
