@@ -1,0 +1,12 @@
+# fly.toml app configuration file generated for pet-petting-backend on 2024-02-18T20:16:32+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'pet-petting-backend'
+primary_region = 'ams'
+
+[build]
+
+[[vm]]
+  size = 'shared-cpu-1x'
