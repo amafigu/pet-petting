@@ -1,0 +1,42 @@
+@use '../theme' as theme;
+@use '../media' as media;
+
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-all-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin component-container-large {
+  width: 100%;
+  margin: theme.$spacing-regular 0;
+}
+
+@mixin subtitle-text {
+  font-family: theme.$font-family-primary;
+  font-size: theme.$font-size-medium;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-primary;
+}
+
+@mixin title-text {
+  font-family: theme.$font-family-primary;
+  font-size: theme.$font-size-semi-title;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-primary;
+}
