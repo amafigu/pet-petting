@@ -1,9 +1,17 @@
+import cors from 'cors'
 import dotenv from 'dotenv'
 import express from 'express'
 import { AppDataSource } from './config/data-source'
 import router from './routes'
-dotenv.config()
+const envFile =
+  process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development'
+dotenv.config({ path: envFile })
 const app = express()
+app.use(
+  cors({
+    origin: process.env.API_URL
+  })
+)
 app.use(express.json())
 router(app)
 
