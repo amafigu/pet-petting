@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec ts-node src/server.ts",
     "test:unit": "ENV_FILE=./config/.env.test jest",
-    "test": "jest",
+    "test": "jest --config jest.config.js",
     "build": "tsc -outDir dist"
   },
   "keywords": [],
