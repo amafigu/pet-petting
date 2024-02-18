@@ -27,6 +27,8 @@ RUN npm ci
 # Copy application code
 COPY --link . .
 
+# Compile TypeScript to JavaScript
+RUN npm run build
 
 # Final stage for app image
 FROM base
@@ -36,4 +38,4 @@ COPY --from=build /app /app
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD [ "node", "server.js" ]
+CMD [ "node", "dist/src/server.js" ]
