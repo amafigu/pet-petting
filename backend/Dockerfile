@@ -1,50 +1,45 @@
-# syntax=docker/dockerfile:1
+# syntax = docker/dockerfile:1
 
-# Use a specific version of Node.js as the base image
+# Adjust NODE_VERSION as desired
 ARG NODE_VERSION=20.11.0
-FROM node:${NODE_VERSION}-slim AS build
+FROM node:${NODE_VERSION}-slim as base
 
-# Set the working directory in the container
+LABEL fly_launch_runtime="Node.js"
+
+# Node.js app lives here
 WORKDIR /app
 
-# Install system dependencies required for native npm module compilation
+# Set production environment
+ENV NODE_ENV="production"
+
+
+# Throw-away build stage to reduce size of final image
+FROM base as build
+
+# Install packages needed to build node modules
 RUN apt-get update -qq && \
-    apt-get install -y build-essential node-gyp pkg-config python-is-python3 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
 
-# Copy package.json and package-lock.json (or npm-shrinkwrap.json) for npm install
-COPY package*.json ./
+# Install node modules
+COPY --link package-lock.json package.json ./
+RUN npm ci --include=dev
 
-# Install npm dependencies including 'devDependencies'
-RUN npm ci
+# Copy application code
+COPY --link . .
 
-# Copy the rest of the application code
-COPY . .
-
-# Build the application (uncomment the next line if your project needs a build step, e.g., TypeScript compilation)
+# Build application
 RUN npm run build
 
-# Start a new, final image to reduce size
-FROM node:${NODE_VERSION}-slim AS production
+# Remove development dependencies
+RUN npm prune --omit=dev
 
-# Set NODE_ENV environment variable to production for this stage
-ENV NODE_ENV=production
 
-# Set the working directory in the container
-WORKDIR /app
+# Final stage for app image
+FROM base
 
-# Copy built assets from the 'build' stage
-COPY --from=build /app/dist ./dist
+# Copy built application
+COPY --from=build /app /app
 
-# Copy package.json and package-lock.json for npm install in production mode
-COPY package*.json ./
-
-# Install only production dependencies
-RUN npm install --only=production
-
-# Expose the port the app runs on
-EXPOSE 3001
-
-# Command to run the application
-CMD ["node", "dist/server.js"]
+# Start the server by default, this can be overwritten at runtime
+EXPOSE 3000
+CMD [ "node", "src/server.js"]

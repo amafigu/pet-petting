@@ -1,30 +1,22 @@
-app = "pet-petting-backend"
-primary_region = "ams"
+# fly.toml app configuration file generated for pet-petting-backend on 2024-02-19T14:26:42+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'pet-petting-backend'
+primary_region = 'ams'
 
 [build]
 
 [http_service]
-  internal_port = 3001
+  internal_port = 3000
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 0
-  processes = ["app"]
+  processes = ['app']
 
-[[services]]
-  internal_port = 3001
-  protocol = "tcp"
-
-  [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
-
-  [[services.ports]]
-    handlers = ["http"]
-    port = 8080
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
-
- 
+[[vm]]
+  memory = '512mb'
+  cpu_kind = 'shared'
+  cpus = 1
