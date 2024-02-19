@@ -6,15 +6,15 @@ const envFile =
   process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development'
 dotenv.config({ path: envFile })
 
-const DbPort = process.env.DB_PORT != null ? Number(process.env.DB_PORT) : 5432
+const url = process.env.DATABASE_URL
+
+if (!url) {
+  throw new Error('DATABASE_URL is not provided.')
+}
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: process.env.DB_HOST,
-  port: DbPort,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
+  url: url,
   synchronize: true,
   logging: true,
   entities: [Pet],
