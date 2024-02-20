@@ -1,8 +1,9 @@
 import cors from 'cors'
 import dotenv from 'dotenv'
 import express from 'express'
+import pets from '../src/routes/pets'
 import { AppDataSource } from './config/data-source'
-import router from './routes'
+
 const envFile =
   process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development'
 dotenv.config({ path: envFile })
@@ -13,7 +14,7 @@ app.use(
   })
 )
 app.use(express.json())
-router(app)
+app.use('/pets', pets)
 
 AppDataSource.initialize()
   .then(() => {
