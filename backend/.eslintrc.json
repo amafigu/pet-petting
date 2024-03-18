@@ -35,5 +35,16 @@
     ],
     "@typescript-eslint/method-signature-style": ["error", "method"],
     "comma-dangle": ["error", "never"]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["tests/**/*.ts", "tests/**/*.tsx"],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
 }
