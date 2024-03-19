@@ -20,5 +20,13 @@
     "react": {
       "version": "detect"
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": ["jest.config.js", "**/*.config.js"],
+      "env": {
+        "node": true
+      }
+    }
+  ]
 }
