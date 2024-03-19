@@ -1,5 +1,4 @@
-import { PetsList } from '@/components/pets/PetsList'
-import React from 'react'
+import { PetsList } from 'components/pets/PetsList'
 import styles from './pets.module.scss'
 export const Pets: React.FC = () => {
   return (
