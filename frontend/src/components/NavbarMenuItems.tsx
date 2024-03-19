@@ -1,5 +1,5 @@
-import { Home } from '@/pages/Home'
-import { Pets } from '@/pages/Pets'
+import { Home } from 'pages/Home'
+import { Pets } from 'pages/Pets'
 import { FC } from 'react'
 
 type NavbarLink = 'Home' | 'Pets'

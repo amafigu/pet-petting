@@ -1,6 +1,6 @@
-import { getAllPets } from '@/api/pets/pets'
-import { IPet } from '@/types/IPet'
-import React, { useEffect, useState } from 'react'
+import { getAllPets } from 'api/pets/pets'
+import { useEffect, useState } from 'react'
+import { IPet } from 'types/IPet'
 
 export const PetsList: React.FC = () => {
   const [pets, setPets] = useState<IPet[]>([])
@@ -16,7 +16,6 @@ export const PetsList: React.FC = () => {
     }
 
     getPets()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <ul>

@@ -1,4 +1,4 @@
-import { Navbar } from '@/components/ui/Navbar'
+import { Navbar } from 'components/ui/Navbar'
 import { Route, Routes } from 'react-router-dom'
 import { NavbarMenuItems } from './components/NavbarMenuItems'
 
