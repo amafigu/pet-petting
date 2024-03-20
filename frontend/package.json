@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@craco/craco": "^7.1.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.12",
@@ -24,9 +25,9 @@
     "web-vitals": "^3.5.2"
   },
   "scripts": {
-    "start": "cross-env PORT=3001 react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "cross-env PORT=3001 craco start",
+    "build": "craco build",
+    "test": "craco test",
     "lint": "eslint src/**/*.ts src/**/*.tsx"
   },
   "browserslist": {
