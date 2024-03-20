@@ -1,8 +1,7 @@
-import { PetsList } from 'components/pets/PetsList'
-import styles from './pets.module.scss'
+import { PetsList } from '@/components/pets/PetsList'
 export const Pets: React.FC = () => {
   return (
-    <div className={styles.container}>
+    <div>
       Pets Page
       <div>
         <PetsList />
