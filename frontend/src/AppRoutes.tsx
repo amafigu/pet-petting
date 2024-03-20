@@ -1,6 +1,6 @@
 import { Navbar } from 'components/ui/Navbar'
+import { NavbarMenuItems } from 'components/ui/NavbarMenuItems'
 import { Route, Routes } from 'react-router-dom'
-import { NavbarMenuItems } from './components/NavbarMenuItems'
 
 export const AppRoutes: React.FC = () => {
   return (
