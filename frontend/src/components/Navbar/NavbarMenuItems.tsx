@@ -14,11 +14,11 @@ export const NavbarMenuItems: INavbarMenuItems[] = [
   {
     label: 'Home',
     path: '/',
-    Component: Home,
+    Component: Home
   },
   {
     label: 'Pets',
     path: '/pets',
-    Component: Pets,
-  },
+    Component: Pets
+  }
 ]
