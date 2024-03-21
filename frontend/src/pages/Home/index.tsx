@@ -1,29 +1,20 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
+import { HomePageWrapper } from './HomePageWrapper'
 
 export const Home: React.FC = () => {
   return (
-    <>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: '90vh',
-          backgroundImage: `url(${process.env.PUBLIC_URL}/assets/banner/home.jpg)`,
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover'
-        }}
-      >
+    <HomePageWrapper>
+      <Box>
         <Typography
           variant="h3"
-          component="h3"
+          component="h1"
+          mt={3}
           sx={{ color: 'white', textAlign: 'center' }}
         >
-          Let us take care of homeless pets
+          Let us help homeless animals
         </Typography>
       </Box>
-    </>
+    </HomePageWrapper>
   )
 }
