@@ -22,9 +22,18 @@ export const PetsList: React.FC = () => {
   }, [])
 
   return (
-    <Grid container spacing={1} sx={{ padding: 4 }}>
+    <Grid container spacing={3} justifyContent="center">
       {pets.map((pet, index) => (
-        <Grid item sm={6} md={4} key={index}>
+        <Grid
+          item
+          xs={12}
+          sm={4}
+          md={3}
+          key={index}
+          display={'flex'}
+          justifyContent="center"
+          mb={4}
+        >
           <PetCard pet={pet} />
         </Grid>
       ))}

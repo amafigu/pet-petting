@@ -12,7 +12,7 @@ interface PetCardProps {
 
 export const PetCard: React.FC<PetCardProps> = ({ pet }) => {
   return (
-    <Card sx={{ width: 280 }}>
+    <Card sx={{ width: 320 }}>
       <CardMedia
         component="img"
         height="280"
@@ -26,6 +26,9 @@ export const PetCard: React.FC<PetCardProps> = ({ pet }) => {
         <List dense>
           <ListItem>
             <ListItemText primary="Description:" secondary={pet.description} />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Breed:" secondary={pet.breed} />
           </ListItem>
           <ListItem>
             <ListItemText
