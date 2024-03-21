@@ -1,8 +1,13 @@
+import { ListContainer } from '@/components/ui/ListContainer'
 import { render, screen } from '@testing-library/react'
 import { Pets } from './index'
 
 function renderPets() {
-  render(<Pets />)
+  render(
+    <ListContainer>
+      <Pets />
+    </ListContainer>
+  )
 }
 
 describe('Home Page should', () => {
