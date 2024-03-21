@@ -2,7 +2,7 @@ import { IPet } from '@/types/IPet'
 import { AxiosResponse } from 'axios'
 import instance from '../api'
 
-export const getAllPets = (): Promise<AxiosResponse<IPet[]>> =>
+export const getPets = (): Promise<AxiosResponse<IPet[]>> =>
   instance.get<IPet[]>('pets/')
 
 export const getPetById = (id: number): Promise<AxiosResponse<IPet> | null> =>
